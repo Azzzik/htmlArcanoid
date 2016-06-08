@@ -67,7 +67,7 @@ function draw() {
 } else if(x > paddleX && x < paddleX + paddleWidth && y> canvas.height-ballRadius-paddleHeight){
     
         dy = -dy;
-		speed=speed+10;
+		// must rise speed after paddle collision speed=speed+10;
     }
 	if (y>canvas.height){
         alert("GAME OVER");
