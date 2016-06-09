@@ -4,7 +4,7 @@ var ctx = canvas.getContext("2d");
 var x = canvas.width/2;
 var y = canvas.height-30;
 //ball vars
-var speed = 0.5;
+var speed = 1;
 var dx = speed;
 var dy = -speed;
 var ballRadius = 10;
@@ -67,7 +67,9 @@ function draw() {
 } else if(x > paddleX && x < paddleX + paddleWidth && y> canvas.height-ballRadius-paddleHeight){
     
         dy = -dy;
-		// must rise speed after paddle collision speed=speed+10;
+		dx+=0.2;
+		dy-=0.2;
+		
     }
 	if (y>canvas.height){
         alert("GAME OVER");
