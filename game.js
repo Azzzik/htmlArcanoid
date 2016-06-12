@@ -58,8 +58,10 @@ function drawBall() {
 	
 	var rancol = rCol();
 	
-	if(y  > canvas.height -ballRadius|| y  == ballRadius || x  > canvas.width -ballRadius|| x == ballRadius ) {
-    ctx.fillStyle = rancol;} 	
+	if(y  >= canvas.height-10 || y  <= ballRadius+5 || x  >= canvas.width -10|| x <= ballRadius+1 ) {
+    ctx.fillStyle = rancol;} ;	
+	 if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
+                  ctx.fillStyle = rancol;  }
 }
 
 function drawPaddle() {
@@ -79,7 +81,7 @@ function drawBricks() {
                 bricks[c][r].y = brickY;
                 ctx.beginPath();
                 ctx.rect(brickX, brickY, brickWidth, brickHeight);
-                ctx.fillStyle = "#0095DD";
+               
                 ctx.fill();
                 ctx.closePath();
         }
@@ -117,6 +119,7 @@ function collisionDetection() {
                 if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
                     dy = -dy;
                     b.status = 0;
+					
                 }
             }
         }
@@ -126,7 +129,7 @@ function collisionDetection() {
 
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawBall();
+    
     x += dx;
     y += dy;
 	if(x  > canvas.width -ballRadius|| x + dx < ballRadius) {
@@ -149,10 +152,11 @@ function draw() {
 
 	
 
+
+collisionDetection();
 drawPaddle();
 drawBricks();
-collisionDetection();
-
+drawBall();
 if(rightPressed && paddleX < canvas.width-paddleWidth) {
     paddleX += 7;
 }
