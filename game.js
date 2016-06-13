@@ -1,5 +1,6 @@
 // game vars
 var score = 0;
+var lives = 3;
 
 // canvas vars
 var canvas = document.getElementById("myCanvas");
@@ -97,6 +98,12 @@ function drawScore() {
     ctx.fillText("Score: "+score, 8, 20);
 }
 
+function drawLives() {
+    ctx.font = "16px Arial";
+    ctx.fillStyle = "#0095DD";
+    ctx.fillText("Lives: "+lives, canvas.width-65, 20);
+}
+
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
@@ -157,12 +164,22 @@ function draw() {
 		
     }
 	if (y>canvas.height){
-        alert("GAME OVER");
-        document.location.reload();
+        lives--;
+if(!lives) {
+    alert("GAME OVER");
+    document.location.reload();
+}
+else {
+    x = canvas.width/2;
+    y = canvas.height-30;
+    dx = 2;
+    dy = -2;
+    paddleX = (canvas.width-paddleWidth)/2;
+}
     }
 
 	
-
+drawLives();
 drawScore();
 collisionDetection();
 drawPaddle();
