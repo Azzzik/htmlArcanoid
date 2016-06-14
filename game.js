@@ -191,6 +191,7 @@ if(rightPressed && paddleX < canvas.width-paddleWidth) {
 else if(leftPressed && paddleX > 0) {
     paddleX -= 7;
 }
+requestAnimationFrame(draw);
 }
 
 document.addEventListener("mousemove", mouseMoveHandler, false);
@@ -200,7 +201,7 @@ function mouseMoveHandler(e) {
         paddleX = relativeX - paddleWidth/2;
     }
 }
-setInterval(draw, 10);
+draw();
 
 
 
